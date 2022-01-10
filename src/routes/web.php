@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('stripe/payments','StripePaymentController@index');
+
+Route::get('stripe/payment/status','StripePaymentController@success')->name('stripe.success');
+
+Route::post('stripe/payment/indent','StripePaymentController@createPaymentIndent')->name('stripe.payment.indent');
+
+Route::post('stripe/webhook/response','StripePaymentController@webhookResponse')->name('stripe.payment.webhook.response');
+
