@@ -11,7 +11,7 @@ class StripePaymentController extends Controller
 
     public function __construct()
     {
-        $this->stripeClient=env('STRIPE_TEST_CLIENT');
+        $this->stripeClient=config('STRIPE_TEST_CLIENT',env('STRIPE_TEST_CLIENT'));
 
     }
 
