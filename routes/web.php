@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+if (config('APP_ENV',env('APP_ENV') === 'production') {
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+}
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
