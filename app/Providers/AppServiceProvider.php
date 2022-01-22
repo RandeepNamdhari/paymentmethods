@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!App::environment([
+        if (!\App::environment([
             'local',
             'testing',
         ])) {
