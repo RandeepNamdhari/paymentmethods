@@ -184,9 +184,10 @@
 
 	<div class="live-mode">
 
-		<pre id="webhookResponse">
+		<pre>
+		<code id="webhookResponse">
 
-
+   </code>
 
 		</pre>
 
