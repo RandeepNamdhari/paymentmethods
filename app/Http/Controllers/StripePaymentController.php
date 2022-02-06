@@ -75,7 +75,7 @@ $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 $event = null;
 
 try {
-  $event = new \Stripe\Webhook::constructEvent(
+  $event = \Stripe\Webhook::constructEvent(
     $payload, $sig_header, $endpoint_secret
   );
 } catch(\UnexpectedValueException $e) {
