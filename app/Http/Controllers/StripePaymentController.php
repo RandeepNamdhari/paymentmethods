@@ -120,7 +120,7 @@ switch ($event->type) {
     {
         $response= \Storage::get('stripeResponses/'.$request->client_secret.'.json');
 
-        return array('status'=>1,'response'=>json_decode($response));
+        return array('status'=>1,'response'=>echo json_decode($response));
     }
 
 
