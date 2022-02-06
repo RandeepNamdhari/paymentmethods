@@ -80,11 +80,13 @@ try {
   );
 } catch(\UnexpectedValueException $e) {
   // Invalid payload
-  http_response_code(400);
+    return array('error'=>$e->getMessage());
+ // http_response_code(400);
   exit();
 } catch(\Stripe\Exception\SignatureVerificationException $e) {
   // Invalid signature
-  http_response_code(400);
+      return array('error'=>$e->getMessage());
+
   exit();
 }
 
