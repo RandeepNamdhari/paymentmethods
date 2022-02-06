@@ -75,7 +75,7 @@ $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 $event = null;
 
 try {
-  $event = \Stripe\Webhook::constructEvent(
+  $event = new \Stripe\Webhook::constructEvent(
     $payload, $sig_header, $endpoint_secret
   );
 } catch(\UnexpectedValueException $e) {
@@ -109,11 +109,12 @@ switch ($event->type) {
     echo 'Received unknown event type ' . $event->type;
 }
 
-http_response_code(200);
+
        if(isset($paymentIntent->client_secret))
        {
          \Storage::put('stripeResponses/'.$paymentIntent->client_secret.'.json',json_encode($paymentIntent));
        }
+       http_response_code(200);
     }
 
     public function webhookResponse(Request $request)
