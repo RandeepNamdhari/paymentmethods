@@ -80,13 +80,11 @@ try {
   );
 } catch(\UnexpectedValueException $e) {
   // Invalid payload
-    return array('error'=>$e->getMessage());
- // http_response_code(400);
+  http_response_code(400);
   exit();
 } catch(\Stripe\Exception\SignatureVerificationException $e) {
   // Invalid signature
-      return array('error'=>$e->getMessage());
-
+  http_response_code(400);
   exit();
 }
 
@@ -106,7 +104,6 @@ switch ($event->type) {
     $paymentIntent = $event->data->object;
   case 'payment_intent.succeeded':
     $paymentIntent = $event->data->object;
-  // ... handle other event types
   default:
     echo 'Received unknown event type ' . $event->type;
 }
