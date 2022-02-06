@@ -68,9 +68,51 @@ class StripePaymentController extends Controller
 
     public function webhook(Request $request)
     {
-       if(isset($request->object->client_secret))
+        $endpoint_secret = 'whsec_b9cefbf31a6194437ecfa65573402225635462af01183c426bad2f7c6120fa28';
+
+$payload = @file_get_contents('php://input');
+$sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+$event = null;
+
+try {
+  $event = \Stripe\Webhook::constructEvent(
+    $payload, $sig_header, $endpoint_secret
+  );
+} catch(\UnexpectedValueException $e) {
+  // Invalid payload
+  http_response_code(400);
+  exit();
+} catch(\Stripe\Exception\SignatureVerificationException $e) {
+  // Invalid signature
+  http_response_code(400);
+  exit();
+}
+
+// Handle the event
+switch ($event->type) {
+  case 'payment_intent.amount_capturable_updated':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.canceled':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.created':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.payment_failed':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.processing':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.requires_action':
+    $paymentIntent = $event->data->object;
+  case 'payment_intent.succeeded':
+    $paymentIntent = $event->data->object;
+  // ... handle other event types
+  default:
+    echo 'Received unknown event type ' . $event->type;
+}
+
+http_response_code(200);
+       if(isset($paymentIntent->client_secret))
        {
-         \Storage::put('stripeResponses/'.$request->object->client_secret.'.json',json_encode($request->object));
+         \Storage::put('stripeResponses/'.$paymentIntent->client_secret.'.json',json_encode($paymentIntent));
        }
     }
 
@@ -80,4 +122,6 @@ class StripePaymentController extends Controller
 
         return array('status'=>1,'response'=>$response);
     }
+
+
 }
