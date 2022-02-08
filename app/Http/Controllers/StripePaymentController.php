@@ -44,7 +44,7 @@ class StripePaymentController extends Controller
         $stripe = new \Stripe\StripeClient($this->stripeClient);
 
         $intent=$stripe->paymentIntents->create([
-                                                 'amount' => $this->amount,
+                                                 'amount' => $this->amount*100,
                                                  'currency' => 'usd',
                                                  
                                                ]);
