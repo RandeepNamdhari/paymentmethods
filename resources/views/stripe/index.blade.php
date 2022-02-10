@@ -151,7 +151,7 @@
 		<div class="config-form">
 
 			<div class="row" style="flex-direction: column;"><h3>Card Details</h3>
-				<p>For testing cards please visit <a href="https://stripe.com/docs/testing">stripe testing</a></p></div>
+				<p>For testing cards please visit <a target="_blank" href="https://stripe.com/docs/testing">stripe testing</a></p></div>
 
 			<div class="hide" id="loader">Please wait...</div>
 
