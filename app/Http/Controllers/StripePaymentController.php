@@ -30,16 +30,23 @@ class StripePaymentController extends Controller
     public function createPaymentIndent(Request $request)
     {
         
+         $validator = \Validator::make($request->all(), [
+         'amount'=>'required|numeric',
+        ]);
+ 
+        if ($validator->fails()) {
+            return array('errors'=>$validator->errors(),'message'=>$validator->errors()->first());
+        }
 
          if(isset($request->stripeClient) && $request->stripeClient)
          {
             $this->stripeClient=$request->stripeClient;
          }
 
-          $this->amount=intval($request->amount);
+          $this->amount=($request->amount);
 
          try {
-              
+         //     echo $this->amount;die;
        
         $stripe = new \Stripe\StripeClient($this->stripeClient);
 
@@ -68,7 +75,7 @@ class StripePaymentController extends Controller
 
     public function webhook(Request $request)
     {
-        $endpoint_secret = 'whsec_vxerSUj6Q2RmyozLXcCQWxZ2mHhqXl1W';
+        $endpoint_secret = config('STRIPE_WEBHOOK_SECRET',env('STRIPE_WEBHOOK_SECRET'));
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
