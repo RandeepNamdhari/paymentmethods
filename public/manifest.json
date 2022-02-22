@@ -1,7 +1,7 @@
 {
-  "name": "Klick Menu - \u0643\u0644\u064a\u0643 \u0645\u0646\u064a\u0648",
-  "short_name": "Klick Menu - \u0643\u0644\u064a\u0643 \u0645\u0646\u064a\u0648",
-  "start_url": "https:\/\/klick.menu\/home",
+  "name": "My Payments",
+  "short_name": "Payments",
+  "start_url": "https:\/\/hidden-gorge-73337.herokuapp.com\/home",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",

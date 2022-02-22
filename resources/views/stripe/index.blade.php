@@ -4,7 +4,7 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	<link rel=stylesheet       href=https://cdn.jsdelivr.net/npm/pretty-print-json@1.2/dist/pretty-print-json.css>
 
-
+<link rel="manifest" href="{{asset('manifest.json')}}">
 	<style type="text/css">
 
 		.m-0

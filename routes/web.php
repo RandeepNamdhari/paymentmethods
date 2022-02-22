@@ -17,9 +17,7 @@ if (config('APP_ENV',env('APP_ENV')) === 'production') {
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/home','StripePaymentController@index');
 
 Route::get('stripe/payments','StripePaymentController@index');
 
