@@ -5,7 +5,7 @@ return [
     'manifest' => [
         'name' => config('APP_NAME', env('APP_NAME')),
         'short_name' => 'PWA',
-        'start_url' => url('/'),
+        'start_url' => config('app.url',env('APP_URL')),
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
         'display' => 'standalone',
