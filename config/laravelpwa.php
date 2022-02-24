@@ -3,7 +3,7 @@
 return [
     'name' => 'LaravelPWA',
     'manifest' => [
-        'name' => config('APP_NAME', env('APP_NAME')),
+        'name' =>'Payment Methods',
         'short_name' => 'PWA',
         'start_url' => config('app.url',env('APP_URL')),
         'background_color' => '#ffffff',
